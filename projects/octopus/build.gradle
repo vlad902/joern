@@ -46,12 +46,12 @@ dependencies{
 
 task octopusMlutils(type: Exec) {
     workingDir './python/octopus-mlutils'
-    commandLine 'python3', 'setup.py', 'install', '--user'
+    commandLine 'python3', 'setup.py', 'install'
 }
 
 task octopusTools(type: Exec, dependsOn: octopusMlutils) {
     workingDir './python/octopus-tools'
-    commandLine 'python3', 'setup.py', 'install', '--user'
+    commandLine 'python3', 'setup.py', 'install'
 }
 
 task copyToLib(type: Copy) {

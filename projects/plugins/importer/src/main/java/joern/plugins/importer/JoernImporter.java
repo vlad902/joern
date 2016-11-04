@@ -1,6 +1,7 @@
 package joern.plugins.importer;
 
 import java.io.IOException;
+import java.util.Date;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -42,9 +43,13 @@ public class JoernImporter extends JoernProjectPlugin {
 	 {
 		openProject();
 
+		 System.out.println( "#1: " + new Date() );
 		if(uncompress) uncompressArchive();
+		 System.out.println( "#2: " + new Date() );
 		if(parsecode) parseSourceCode();
+		 System.out.println( "#3: " + new Date() );
 		if(importcsv) importCSVFilesIntoDatabase();
+		 System.out.println( "#4: " + new Date() );
 	 }
 
 	private void openProject()

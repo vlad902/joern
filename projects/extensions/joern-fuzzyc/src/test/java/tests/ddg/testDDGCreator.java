@@ -26,7 +26,7 @@ import udg.useDefGraph.UseDefGraph;
 public class testDDGCreator extends TestDBTestsBatchInserter
 {
 
-	@Test
+	//@Test
 	public void simplestTest()
 	{
 		IndexHits<Long> hits = Function.getFunctionsByName("ddg_simplest_test");
@@ -48,7 +48,7 @@ public class testDDGCreator extends TestDBTestsBatchInserter
 
 	}
 
-	@Test
+	//@Test
 	public void testConverter()
 	{
 		IndexHits<Long> hits = Function.getFunctionsByName("ddg_simplest_test");

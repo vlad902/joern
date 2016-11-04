@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MAXHEAP="-Xmx${OCTOPUS_SERVER_MAXHEAP:-3g}"
+MAXHEAP="-Xmx${OCTOPUS_SERVER_MAXHEAP:-6g}"
 OPTS_FROM_ORIENTDB="-Djna.nosys=true -XX:+HeapDumpOnOutOfMemoryError -XX:MaxDirectMemorySize=512g -Djava.awt.headless=true -Dfile.encoding=UTF8 -Drhino.opt.level=9"
 
 OCTOPUS_HOME="$( cd "$( dirname "$0" )" && pwd )"

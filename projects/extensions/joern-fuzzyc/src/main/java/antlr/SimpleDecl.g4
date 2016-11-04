@@ -12,6 +12,7 @@ initializer: assign_expr
            |'{' initializer_list '}'
 ;
 
+// TODO: support .foo = bar syntax too
 initializer_list: initializer (',' initializer)*;
 
 

@@ -1,6 +1,7 @@
 package octopus.server.importer.csv.titan;
 
 import java.io.IOException;
+import java.util.Date;
 
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Graph;
@@ -39,13 +40,20 @@ public class CSVImporter
 	public void importCSVFiles(String nodeFilename, String edgeFilename)
 			throws IOException
 	{
+		System.out.println( "-- 0: " + new Date() );
+
 		openNodeFile(nodeFilename);
+		System.out.println( "-- 1: " + new Date() );
 		openEdgeFile(edgeFilename);
+		System.out.println( "-- 2: " + new Date() );
 
 		importNodes();
+		System.out.println( "-- 3: " + new Date() );
 		importEdges();
+		System.out.println( "-- 4: " + new Date() );
 
 		closeDatabase();
+		System.out.println( "-- 5: " + new Date() );
 	}
 
 	private void openNodeFile(String nodeFilename) throws IOException

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 
+import com.thinkaurelius.titan.core.Multiplicity;
 import com.thinkaurelius.titan.core.schema.Mapping;
 import org.apache.commons.io.FileUtils;
 import org.apache.tinkerpop.gremlin.structure.Graph;
@@ -56,7 +57,6 @@ public class TitanLocalDatabaseManager implements DatabaseManager {
 
 		// At import, we only create separate composite indices for key and type.
 		// Additional indices should be built by plugins.
-
 		schema.buildIndex("byKey", Vertex.class).addKey(extIdKey).unique().buildCompositeIndex();
 		schema.buildIndex("byType", Vertex.class).addKey(typeKey).buildCompositeIndex();
 

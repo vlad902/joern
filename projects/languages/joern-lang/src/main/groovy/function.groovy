@@ -80,3 +80,43 @@ GraphTraversal.metaClass.functionToCallers = {
 		getCallsTo(funcName)
 	}.scatter()
 }
+
+addStep('pp', { verbose=false ->
+	delegate.map({
+		result = ""
+		switch(it.get().class) {
+		case com.thinkaurelius.titan.graphdb.vertices.CacheVertex:
+			result = String.format("vertex id: %s\t%s", it.get().id().toString(),
+				it.get().properties().toList().stream()
+					.filter({ prop -> prop.value() != "" })
+					.sorted(Comparator.comparing({ prop -> prop.type.toString() }))
+					.map({ prop -> prop.type.toString() + ": " + prop.value() })
+					.toArray().toString())
+			if (verbose && it.get().keys().contains("functionId")) {
+				def function = g.V().has("_key", it.get().value("functionId"))
+				def statement = g.V(it.get()).statements()[0]
+				def location = (statement == null ? null : statement.values("location")[0])
+				result += String.format("\n  in function %s in file %s at line %s\n",
+					function.clone()[0].value('code'),
+					function.in('IS_FILE_OF')[0].value('code'),
+					(location == null ? "?" : location.split(":")[0]))
+			}
+			break
+
+		case com.thinkaurelius.titan.graphdb.relations.CacheEdge:
+			result = String.format("vertex %s --> vertex %s  edge: %s  ",
+				it.get().getVertex(0).id().toString(),
+				it.get().getVertex(1).id().toString(),
+				it.get().getType().toString())
+			
+			it.get().properties().forEachRemaining { result += String.format("%s: %s", it.key, it.value) }
+			break
+			
+		default:
+			result = String.format("%s [%s]", it.get().toString(), it.get().class.toString())
+			break
+		}
+
+		result
+	})
+})

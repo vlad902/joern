@@ -19,7 +19,7 @@ import the code as follows
 .. code-block:: none
 
 	`cd $JOERN`
-	`tar -cvf testCode.tar.gz testCode`
+	`tar -czvf testCode.tar.gz testCode`
 	`joern-import testCode.tar.gz`
 
 This will upload the tarball to the server, unpack it, parse the code

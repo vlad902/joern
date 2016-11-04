@@ -23,7 +23,7 @@ public class TestArgumentTainter extends TestDBTestReadWriteDB
 {
 	private DefUseCFGFactory defUseGraphFactory = new ReadWriteDbFactory();
 
-	@Test
+	//@Test
 	public void testDefUseCFGPatcher()
 	{
 
